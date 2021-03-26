@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 25, 2021 at 07:03 PM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 8.0.3
+-- Generation Time: Mar 26, 2021 at 08:50 AM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 8.0.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -39,7 +39,9 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id_admin`, `username`, `email`, `password`) VALUES
-(1, '1stadmin', 'admin@admin.com', '12345');
+(2, 'Akhtar', 'akhtar@gmail.com', 'abraar'),
+(4, 'Admin', 'admin@gmail.com', 'admin'),
+(5, 'Admin', 'admin@gmail.com', 'admin');
 
 -- --------------------------------------------------------
 
@@ -63,9 +65,11 @@ CREATE TABLE `report` (
 --
 
 INSERT INTO `report` (`id_report`, `title`, `content`, `response`, `date_created`, `id_user`, `status`, `id_admin`) VALUES
-(3, 'Special Air Service', 'SAS of the UK', NULL, '2021-03-25 16:16:34', 1, 'Pending', NULL),
-(4, 'Disappearing Earth', 'ooo', 'NO', '2021-03-25 16:41:52', 1, 'Rejected', NULL),
-(5, 'Disappearing Earth', 'ooo', 'lol, no', '2021-03-25 16:41:52', 1, 'Rejected', NULL);
+(7, 'report', 'laporlapor', 'nice try kid', '2021-03-25 19:44:28', 4, 'Approved', 4),
+(8, 'Complaint Title', 'Should Should Should Should', NULL, '2021-03-26 04:14:11', 4, 'Pending', NULL),
+(9, 'Jalan Rusak', 'di Jl. Semalang karaya meter ke 12 ada jalan rusak dengan diameter lobang sebesar 80 m3', NULL, '2021-03-26 04:32:20', 4, 'Pending', NULL),
+(10, 'Jalan Rusak', 'Terdapat bolongan di Jl. Semalang Karaya meter ke 25 dengan diameter lobang sebesar 80 m3', NULL, '2021-03-26 04:33:21', 4, 'Pending', NULL),
+(11, 'Berhasil', 'lapor berhasil', 'Mantap', '2021-03-26 06:52:53', 6, 'Approved', 4);
 
 -- --------------------------------------------------------
 
@@ -86,7 +90,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `email`, `username`, `password`, `telp`) VALUES
-(1, '82nd@505pir.com', '82ndAllTheWay', '$2a$10$NDJwrgw044PBEIRtolAwruiqWin1hq1w/FMg8Inf2LmTKL86ax/uC', '82');
+(3, 'cobahash@gmail.com', 'cobaHash', '$2a$10$kKluXcZuxvgi.rmKWp6lNeQNEIy8JKuYZLbErMpLqEjASHkFnw4R2', '123123123'),
+(4, 'abraar23@gmail.com', 'Akhtar Muz', '$2a$10$4EVe8hqXsbWAZDPAGXzcquVsllojCg4uc0mjeS0r4/7Dubmonak6K', '19820598'),
+(5, 'bidin@gmail.com', 'Pak Abidin', '$2a$10$w4pUcZkS/SxpzmmJbV9YZeQCygr6PPgmqL6W6NlXuJ/AX.9asLSr.', '09808989'),
+(6, 'zainul@gmail.com', 'Pak Zainul', '$2a$10$mzZ9yqehRxkq9pMNgyI/VO0twmn5xCiH7kYw/uNsLdKQFyQ52I76a', '0888888');
 
 --
 -- Indexes for dumped tables
@@ -120,19 +127,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_admin` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `report`
 --
 ALTER TABLE `report`
-  MODIFY `id_report` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_report` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
