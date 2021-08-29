@@ -6,15 +6,6 @@ module.exports = (app, db) => {
     res.send('User API')
   })
 
-  app.get('/user/total', (req, res) => {
-    sql = `select * from user`
-    db.query(sql, (err, data) => {
-      if (err) throw err
-      else res.send(data)
-    })
-  })
-
-
   app.post('/user', async (req, res) => {
     const {
       email,
@@ -23,7 +14,7 @@ module.exports = (app, db) => {
       telp
     } = req.body
     const hash = await bcrypt.hash(password, 10)
-    sql = `insert into user (email ,username, password, telp)
+    sql = `insert into user (email , username, password, telp)
     values ('${email}', '${username}', '${hash}', '${telp}');`
     verif = `select * from user where email='${email}'`
     db.query(verif, (err, dat) => {
@@ -41,7 +32,7 @@ module.exports = (app, db) => {
     })
   })
 
-  const userKey = "EA4D02BE0C3FCC2F953AB65E628459FC811DC398E3B52FA79F46F06A90CA80BD"
+  const userKey = "DLpXylJxNfhduC2ekAuLqRxHMIoYhUUoQkjtRFw"
 
   app.post('/user/auth', async (req, res) => {
     const {

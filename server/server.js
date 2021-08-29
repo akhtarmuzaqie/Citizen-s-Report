@@ -2,9 +2,13 @@ const express = require('express'),
   mysql = require('mysql'),
   fs = require('fs'),
   app = express(),
+  cors = require('cors'),
   config = require('./config/config.json');
 
 app.use(express.json()).use(express.urlencoded({extended: true}))
+
+app.use(cors());
+
 // Init Connection To Database
 const db = mysql.createConnection(config);
 

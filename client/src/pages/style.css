@@ -109,3 +109,25 @@ input[type="number"] {
   margin-top: 1rem;
   margin-left: 1rem;
 }
+
+.bfont{
+  font-family: 'Libre Baskerville', serif;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #exclude-print {
+    visibility: hidden;
+    display: none;
+  }
+  #section-to-print, #section-to-print * {
+    visibility: visible;
+  }
+  #section-to-print {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}

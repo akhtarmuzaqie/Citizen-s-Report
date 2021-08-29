@@ -8,11 +8,13 @@ import {
   Admindex,
   ReportIndex,
   ReportIndexAdmin,
-  ReportHistory
+  ReportHistory,
+  ReportWorkAdmin
 } from './pages/'
 function App() {
   return (<BrowserRouter>
     <Switch>
+      <Route component={ReportWorkAdmin} path="/ongoing"/>
       <Route component={ReportHistory} path="/history"/>
       <Route component={ReportIndexAdmin} path="/reportindexadmin"/>
       <Route component={ReportIndex} path="/reportindex"/>

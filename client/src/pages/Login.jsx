@@ -46,10 +46,10 @@ export default function Login() {
     }).catch(err => console.log(err))
   }
 
-  return (<div className="container d-flex justify-content-center align-items-center vh-100 montfont">
+  return (<div className="container d-flex justify-content-center align-items-center vh-100 bfont">
     <div className="row w-100">
-      <div className="shadow rounded col-md-6 mx-auto p-4 bg-dark text-light">
-        <Form title="Login Form" onSubmit={handleSubmit}>
+      <div className="shadow rounded col-md-6 mx-auto p-4 bg-secondary text-light">
+        <Form title="Citizen's Login" onSubmit={handleSubmit}>
           <Input name="email" placeholder="Email" type="email" onChange={handleChange}/>
           <Input name="password" placeholder="Password" type="password" onChange={handleChange}/> {state.message && <div id="message" className="my-3">{state.message}</div>}
           <center>

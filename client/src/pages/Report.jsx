@@ -18,13 +18,14 @@ export default function Login() {
     if (!state.token) {
       window.location = "/login";
     } else {
-      axios.get(`http://localhost:2121/report/user/${state.id_user}`).then(({data}) => {
+      axios.get(`http://localhost:2121/report/user/${state.id_user}`, {headers: {token: state.token}})
+      .then(({data}) => 
+      {
         console.log(data);
         setState((state) => ({
           ...state,
           report: data
         }));
-        // window.location.assign('/report')
       }).catch((err) => console.log(err));
     }
   }, [state.id_user, state.token]);
@@ -36,9 +37,12 @@ export default function Login() {
     }));
   };
 
+  
   const handleSubmit = (e) => {
-    e.preventDefault(e);
-    axios.post("http://localhost:2121/report", state).then(({data}) => {}).catch((err) => console.log(err));
+    e.preventDefault();
+    axios.post("http://localhost:2121/report", state, {headers: {token: state.token}})
+    .then(({data}) => {}).catch((err) => 
+    console.log(err));
     window.location.reload()
     $("#entry-point").removeClass("d-none");
   };
@@ -49,7 +53,7 @@ export default function Login() {
   };
 
   return (<Fragment>
-    <nav className="navbar navbar-expand-lg  bg-secondary navbar-dark text-light montfont">
+    <nav className="navbar navbar-expand-lg  bg-secondary navbar-dark text-light bfont">
       <div className="navbar-brand navbar-brand d-flex flex-row align-items-center">
         <h3 className="margin-leftlarger-font-size pmfont text-light">Citizen's Report</h3>
       </div>
@@ -60,17 +64,16 @@ export default function Login() {
         <ul className="navbar-nav w-100">
           <li className="nav-item">
             <a className="btn btn-transparent text-light" href="/report">
-              <i className="fas fa-plus montfont"></i>{" "}
+              <i className="fas fa-plus bfont"></i>{" "}
               Make New Complaint</a>
             <a className="btn btn-transparent text-light" href="/reportindex">
-              <i className="fas fa-list montfont"></i>{" "}
+              <i className="fas fa-list bfont"></i>{" "}
               My Complaint</a>
           </li>
           
           <li className="nav-item ml-auto">
-            <p>{state.username}</p>
             <button className="btn btn-transparent text-light" onClick={handleLogout}>
-              <i className="fas fa-sign-out-alt montfont"></i>
+              <i className="fas fa-sign-out-alt bfont"></i>
               {" "}
               Logout
             </button>
@@ -78,7 +81,7 @@ export default function Login() {
         </ul>
       </div>
     </nav>
-    <div className="container d-flex justify-content-center align-items-center vh-100 montfont">
+    <div className="container d-flex justify-content-center align-items-center vh-100 bfont">
       <div className="row w-100">
         <div className="shadow rounded col-md-8 mx-auto p-4 bg-dark text-light">
           <Form title="Complaint Form" onSubmit={handleSubmit}>
@@ -86,11 +89,8 @@ export default function Login() {
             <textarea className="form-control" style={{
                 height: "300px"
               }} name="content" placeholder="Write Your Complaint Here" onChange={handleChange} required="required"></textarea>
-            {/*<label className="mt-3">Your Name:</label>
-            <input type="text" className="form-control bg-dark text-light" style={{"border-style": "none"}}value={state.username} disabled/> //*/
-            }
             <button type="submit" className="btn btn-secondary mt-4">
-              <i className="fas fa-arrow-alt-circle-right montfont"></i>{" "}
+              <i className="fas fa-arrow-alt-circle-right bfont"></i>{" "}
               Send</button>
             <div id="entry-point" className="d-none text-success">Success</div>
           </Form>

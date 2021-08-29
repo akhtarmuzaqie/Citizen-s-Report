@@ -13,15 +13,18 @@ export default function Login() {
   });
 
   useEffect(() => {
-      axios
-        .get(`http://localhost:2121/report/user/${state.id_user}`)
-        .then(({ data }) => {
-          console.log(data);
-          setState((state) => ({ ...state, report: data }));
-          // window.location.assign('/report')
-        })
-        .catch((err) => console.log(err));
-  }, [state.id_user]);
+    if (!state.token) {
+      window.location = "/login";
+    } else {
+      axios.get(`http://localhost:2121/report/user/${state.id_user}`, {headers: {token: state.token}}).then(({data}) => {
+        console.log(data);
+        setState((state) => ({
+          ...state,
+          report: data
+        }));
+      }).catch((err) => console.log(err));
+    }
+  }, [state.id_user, state.token]);
 
   const handleLogout = () => {
     sessionStorage.clear();
@@ -30,7 +33,7 @@ export default function Login() {
 
   return (
     <Fragment>
-      <nav className="navbar navbar-expand-lg bg-secondary navbar-dark text-light montfont">
+      <nav className="navbar navbar-expand-lg bg-secondary navbar-dark text-light bfont">
         <div className="navbar-brand navbar-brand d-flex flex-row align-items-center">
           <h3 className="margin-leftlarger-font-size pmfont text-light">Citizen's Report</h3>
         </div>
@@ -41,15 +44,15 @@ export default function Login() {
           <ul className="navbar-nav w-100">
             <li className="nav-item">
               <a className="btn btn-transparent text-light" href="/report">
-                <i className="fas fa-plus montfont"></i>{" "}
+                <i className="fas fa-plus bfont"></i>{" "}
                 Make New Complaint</a>
               <a className="btn btn-transparent text-light" href="/reportindex">
-                <i className="fas fa-list montfont"></i>{" "}
+                <i className="fas fa-list bfont"></i>{" "}
                 My Complaint</a>
             </li>
             <li className="nav-item ml-auto">
               <button className="btn btn-transparent text-light" onClick={handleLogout}>
-                <i className="fas fa-sign-out-alt montfont"></i>
+                <i className="fas fa-sign-out-alt bfont"></i>
                 {" "}
                 Logout
               </button>
@@ -57,21 +60,23 @@ export default function Login() {
           </ul>
         </div>
       </nav>
-        <table className="table table-striped table-hover table-secondary montfont">
+        <table className="table table-striped table-hover table-secondary bfont">
           <thead className="">
             <tr>
               <th scope="col">#</th>
               <th scope="col">Title</th>
               <th scope="col">Content</th>
+              <th scope="col">Response</th>
               <th scope="col">Status</th>
             </tr>
           </thead>
           {state.report.map((element, index) => (
             <tbody key={index}>
               <tr>
-                <th scope="row">{index+1}</th>
+                <th scope="row">{index + 1}</th>
                 <td>{element.title}</td>
                 <td>{element.content}</td>
+                <td>{element.response}</td>
                 <td>{element.status}</td>
               </tr>
             </tbody>

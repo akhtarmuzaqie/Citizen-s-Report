@@ -42,17 +42,19 @@ export default function Admin() {
       }
     }).catch(err => console.log(err))
   }
+
   return (<Fragment>
-    <div className="container d-flex justify-content-center align-items-center vh-100 montfont">
+    <div className="container d-flex justify-content-center align-items-center vh-100 bfont">
       <div className="row w-100">
-        <div className="shadow rounded col-md-6 mx-auto p-4 bg-dark text-light">
-          <Form title="Admin Login" onSubmit={handleSubmit}>
+        <div className="shadow rounded col-md-6 mx-auto p-4 bg-secondary text-light">
+          <Form title="Admin's Login" onSubmit={handleSubmit}>
             <Input name="email" placeholder="Email" type="email" onChange={handleChange}/>
             <Input name="password" placeholder="Password" type="password" onChange={handleChange}/> {state.message && <div id="message entry w-100 rounded bg-danger">{state.message}</div>}
             <center>
-              <button type="submit" className="btn btn-secondary subBtn">
-                <i className="fas fa-arrow-alt-circle-right"></i>
-                {" "}Log In</button>
+                <button type="submit" className="btn btn-secondary subBtn">
+                  <i className="fas fa-arrow-alt-circle-right"></i>
+                  {" "}Log In
+                </button>
               <p>
                 Not An Admin ?
                 <br/>

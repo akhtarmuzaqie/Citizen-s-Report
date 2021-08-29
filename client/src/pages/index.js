@@ -6,6 +6,7 @@ import Admindex from './Admindex'
 import ReportIndex from './ReportIndex'
 import ReportIndexAdmin from './ReportIndexAdmin'
 import ReportHistory from './ReportHistory'
+import ReportWorkAdmin from './ReportWorkAdmin'
 
 export {
     Admin,
@@ -15,6 +16,7 @@ export {
     Admindex,
     ReportIndex,
     ReportIndexAdmin,
-    ReportHistory
+    ReportHistory,
+    ReportWorkAdmin
         
  }
